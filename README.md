@@ -1,61 +1,45 @@
-# IMDB Sentiment Analysis
+# 🎬 IMDB Sentiment Analysis
 
-## What I Learned
+> **90% Accuracy** | NLP | Machine Learning | Text Classification
 
-### NLP Techniques
-- Text preprocessing (lowercasing, removing punctuation, removing numbers)
-- Tokenization with NLTK
-- Stopword removal
-- TF-IDF vectorization for feature extraction
-- Handling repeated characters (e.g., "loveeee" → "love")
+## 📌 Overview
 
-### Machine Learning
-- Building pipelines with Scikit-learn
-- Hyperparameter tuning using GridSearchCV
-- Stratified K-Fold cross-validation
-- LinearSVC for text classification
-- Model evaluation with classification report
+This project analyzes IMDB movie reviews using Natural Language Processing (NLP) to classify them as **positive** or **negative**. Built from scratch with Python and Scikit-learn.
 
-### Tools & Libraries
-- Pandas for data manipulation
-- NLTK for text processing
-- Scikit-learn for ML algorithms
-- Joblib for model serialization
+### ✨ Key Achievement
+**90% accuracy** on 50,000 movie reviews using TF-IDF with n-grams and LinearSVC.
 
-## What I Built
+## 🧠 What Makes This Special
 
-A complete sentiment analysis pipeline that:
-1. Takes raw IMDB movie reviews
-2. Preprocesses and cleans the text
-3. Converts text to TF-IDF features
-4. Classifies as positive or negative using LinearSVC
-5. Achieves 90% accuracy on 50,000 reviews
+- **N-grams (1,2)** capture word pairs like "not good" to preserve **semantic meaning** and word order
+- **LinearSVC** finds optimal hyperplane in high-dimensional space
+- **GridSearchCV** automatically finds best parameters
+- **Stratified K-Fold** ensures balanced evaluation
 
-## My Code Structure
+## 📊 Results
+accuracy 0.90 
 
-```python
-# Preprocessing Function
-def preprocess(text):
-    - Lowercase text
-    - Remove numbers and punctuation
-    - Tokenize words
-    - Remove stopwords
-    - Handle repeated characters
-    return cleaned_text
+## Requirements 
 
-# Pipeline
-pipeline = Pipeline([
-    ('tfidf', TfidfVectorizer()),
-    ('classifier', LinearSVC())
-])
+ Download Dataset
+Download IMDB Dataset from Kaggle
 
-# Hyperparameter Tuning
-param_grid = {
-    'ngram_range': [(1,1), (1,2)],
-    'min_df': [2, 3],
-    'max_df': [0.85, 0.95],
-    'C': [0.5, 1]
-}
+## 📦 Required Imports
 
-# Cross Validation
-cv = StratifiedKFold(n_splits=5, shuffle=True)
+import pandas as pd
+import numpy as np
+import re
+
+# NLP
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+
+# Machine Learning
+from sklearn.model_selection import train_test_split, GridSearchCV, StratifiedKFold
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.svm import LinearSVC
+from sklearn.pipeline import Pipeline
+from sklearn.metrics import classification_report
+
+# Model Saving
+import joblib
