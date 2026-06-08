@@ -1,28 +1,61 @@
-# 🎬 IMDB Sentiment Analysis
+# IMDB Sentiment Analysis
 
-NLP project for classifying movie reviews as positive or negative using Machine Learning.
+## What I Learned
 
-## 📊 Performance
+### NLP Techniques
+- Text preprocessing (lowercasing, removing punctuation, removing numbers)
+- Tokenization with NLTK
+- Stopword removal
+- TF-IDF vectorization for feature extraction
+- Handling repeated characters (e.g., "loveeee" → "love")
 
-✅ **Accuracy: 90%**
+### Machine Learning
+- Building pipelines with Scikit-learn
+- Hyperparameter tuning using GridSearchCV
+- Stratified K-Fold cross-validation
+- LinearSVC for text classification
+- Model evaluation with classification report
 
-## 🛠️ Tech Stack
+### Tools & Libraries
+- Pandas for data manipulation
+- NLTK for text processing
+- Scikit-learn for ML algorithms
+- Joblib for model serialization
 
-- Python
-- Scikit-learn (TfidfVectorizer, LinearSVC, GridSearchCV)
-- NLTK (Tokenization, Stopwords)
-- Pandas, NumPy
-- Joblib
+## What I Built
 
-## 📁 Files
+A complete sentiment analysis pipeline that:
+1. Takes raw IMDB movie reviews
+2. Preprocesses and cleans the text
+3. Converts text to TF-IDF features
+4. Classifies as positive or negative using LinearSVC
+5. Achieves 90% accuracy on 50,000 reviews
 
-- `sentiment_analysis.py` - Training script
-- `predict.py` - Prediction script  
-- `model/sentiment_model.joblib` - Trained model
-- `requirements.txt` - Dependencies
+## My Code Structure
 
-## 🚀 Quick Start
+```python
+# Preprocessing Function
+def preprocess(text):
+    - Lowercase text
+    - Remove numbers and punctuation
+    - Tokenize words
+    - Remove stopwords
+    - Handle repeated characters
+    return cleaned_text
 
-```bash
-pip install -r requirements.txt
-python predict.py "Amazing movie!"
+# Pipeline
+pipeline = Pipeline([
+    ('tfidf', TfidfVectorizer()),
+    ('classifier', LinearSVC())
+])
+
+# Hyperparameter Tuning
+param_grid = {
+    'ngram_range': [(1,1), (1,2)],
+    'min_df': [2, 3],
+    'max_df': [0.85, 0.95],
+    'C': [0.5, 1]
+}
+
+# Cross Validation
+cv = StratifiedKFold(n_splits=5, shuffle=True)
