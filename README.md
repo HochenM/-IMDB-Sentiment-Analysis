@@ -6,11 +6,6 @@ NLP project for classifying movie reviews as positive or negative using Machine 
 
 ✅ **Accuracy: 90%**
 
-![Classification Report](images/accuracy_score.png)
-
-
-
-
 ## 🛠️ Tech Stack
 
 - Python
